@@ -1,0 +1,30 @@
+{% extends "Home.html" %}
+
+{% block title %}
+<title>Details for Roll No {{ Roll_No }}</title>
+{% endblock title %}
+
+{% block body %}
+<form method="post" action="/Records">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="Roll_No">Roll_No</label>
+        <input type="text" class="form-control" id="Roll_No" name="Roll_No" placeholder="Enter your Roll_No">
+    </div>  
+    <div class="form-group">
+        <label for="Password">Password</label>
+        <input type="text" class="form-control" id="Password" name="Password" placeholder="Enter Your Password">
+    </div>   
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+{% if Roll_No %}
+    <h2>Details for Roll No {{ Roll_No }}</h2>
+    {% for record in AttendanceData %}
+        <!-- Display details for each record -->
+        <p>Date: {{ record.Date }}, IP Address: {{ record.ip_address }}</p>
+        <!-- Add more fields as needed -->
+    {% endfor %}
+{% endif %}
+
+{% endblock body %}
